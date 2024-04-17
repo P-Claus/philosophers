@@ -16,12 +16,12 @@ OBJ				= $(OBJ_DIR)/main.o
 OBJ_DIR			= obj
 
 UTILS_DIR 		= utils
-UTILS_FILES		= print_error.c print_success.c
-UTILS_OBJ		= $(OBJ_DIR)/print_error.o $(OBJ_DIR)/print_success.o
+UTILS_FILES		= print_error.c print_success.c init_data.c parse_input.c
+UTILS_OBJ		= $(OBJ_DIR)/print_error.o $(OBJ_DIR)/print_success.o $(OBJ_DIR)/init_data.o $(OBJ_DIR)/parse_input.o
 
-#ERROR_DIR 		= error_checks
-#ERROR_FILES		= 
-#ERROR_OBJ		= 
+ERROR_DIR 		= error_checks
+ERROR_FILES		= check_if_string_is_numeric.c check_if_string_is_int.c
+ERROR_OBJ		= $(OBJ_DIR)/check_if_string_is_numeric.o $(OBJ_DIR)/check_if_string_is_int.o
 
 
 
@@ -51,8 +51,8 @@ RESET			= \e[2K\r
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(UTILS_OBJ)
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(UTILS_OBJ)
+$(NAME): $(OBJ) $(UTILS_OBJ) $(ERROR_OBJ)
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(UTILS_OBJ) $(ERROR_OBJ)
 	@echo "$(RESET)$(GREEN)Compiled $(NAME)$(RESET_COLOR)"
 
 $(OBJ_DIR)/%.o: $(SOURCES_DIR)/%.c
@@ -66,10 +66,10 @@ $(OBJ_DIR)/%.o: $(UTILS_DIR)/%.c
 	@$(eval COMPILE_COUNT=$(shell echo $$(($(COMPILE_COUNT)+1))))
 	@echo -n "$(RESET)$(YELLOW)Compiling philosopers $$(($(COMPILE_COUNT)*100/$(TOTAL_FILES)))%"
 
-#$(OBJ_DIR)/%.o: $(ERROR_DIR)/%.c
-#	@$(CC) $(CFLAGS) -c $< -o $@
-#	@$(eval COMPILE_COUNT=$(shell echo $$(($(COMPILE_COUNT)+1))))
-#	@echo -n "$(RESET)$(YELLOW)Compiling philosophers $$(($(COMPILE_COUNT)*100/$(TOTAL_FILES)))%"
+$(OBJ_DIR)/%.o: $(ERROR_DIR)/%.c
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(eval COMPILE_COUNT=$(shell echo $$(($(COMPILE_COUNT)+1))))
+	@echo -n "$(RESET)$(YELLOW)Compiling philosophers $$(($(COMPILE_COUNT)*100/$(TOTAL_FILES)))%"
 
 clean:
 	@$(RM) $(OBJ_DIR)

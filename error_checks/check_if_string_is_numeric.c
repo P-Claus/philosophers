@@ -1,30 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   check_if_string_is_numeric.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/17 15:06:58 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/17 21:22:00 by pclaus           ###   ########.fr       */
+/*   Created: 2024/04/17 21:23:20 by pclaus            #+#    #+#             */
+/*   Updated: 2024/04/17 21:25:12 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosopers.h"
 
-int	main(int argc, char **argv)
+int	check_if_string_is_numeric(char **argv)
 {
-	t_data	data;
+	int	iter;
 
-	if (argc == 5 || argc == 6)
+	iter = 1;
+	while (argv[iter])
 	{
-		// init_data(&data, argv);
-		parse_input(data, argv);
-		// printf("Number of philosophers: %ld\n", data.nb_of_philosophers);
-		print_success("Huzzah");
+		if (str_is_numeric(argv[iter]) != 1)
+			print_error("FORMAT ERROR STUPIDO");
+		iter++;
 	}
-	else
+	return (0);
+}
+
+int	str_is_numeric(char *str)
+{
+	int	count;
+
+	count = 0;
+	while (str[count] && str[count] != '\0')
 	{
-		print_error("FORMAT ERROR");
+		if ((str[count] >= '0') && (str[count] <= '9'))
+			count++;
+		else
+			return (0);
 	}
+	return (1);
 }

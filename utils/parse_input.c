@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parse_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/17 15:06:58 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/17 21:22:00 by pclaus           ###   ########.fr       */
+/*   Created: 2024/04/17 21:06:54 by pclaus            #+#    #+#             */
+/*   Updated: 2024/04/17 21:35:55 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosopers.h"
 
-int	main(int argc, char **argv)
+void	parse_input(t_data data, char **argv)
 {
-	t_data	data;
-
-	if (argc == 5 || argc == 6)
-	{
-		// init_data(&data, argv);
-		parse_input(data, argv);
-		// printf("Number of philosophers: %ld\n", data.nb_of_philosophers);
-		print_success("Huzzah");
-	}
-	else
-	{
-		print_error("FORMAT ERROR");
-	}
+	(void)data;
+	check_if_string_is_numeric(argv);
+	check_if_string_is_int(argv);
 }
