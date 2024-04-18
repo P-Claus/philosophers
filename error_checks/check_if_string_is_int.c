@@ -6,28 +6,11 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 21:29:42 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/17 21:57:22 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/18 20:51:19 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosopers.h"
-
-int	check_if_string_is_int(char **argv)
-{
-	int		iter;
-	long	nb;
-
-	iter = 1;
-	while (argv[iter])
-	{
-		nb = 0;
-		nb = ft_atoi_long(argv[iter]);
-		if (nb > INT_MAX)
-			print_error("One of the arguments is bigger than MAX_INT");
-		iter++;
-	}
-	return (0);
-}
 
 long	ft_atoi_long(const char *str)
 {
@@ -53,4 +36,33 @@ long	ft_atoi_long(const char *str)
 		iter++;
 	}
 	return (result * sign);
+}
+
+static int	calculate_strlen(char *str)
+{
+	int	len;
+
+	len = 0;
+	while (str[len])
+		len++;
+	return (len);
+}
+
+int	check_if_string_is_int(char **argv)
+{
+	int		iter;
+	long	nb;
+
+	iter = 1;
+	while (argv[iter])
+	{
+		nb = 0;
+		if (calculate_strlen(argv[iter]) > 10)
+			print_error("One of the arguments is too big for a long");
+		nb = ft_atoi_long(argv[iter]);
+		if (nb > INT_MAX)
+			print_error("One of the arguments is bigger than MAX_INT");
+		iter++;
+	}
+	return (0);
 }

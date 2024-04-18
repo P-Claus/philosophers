@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 21:23:20 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/17 21:25:12 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/18 21:01:52 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	check_if_string_is_numeric(char **argv)
 	while (argv[iter])
 	{
 		if (str_is_numeric(argv[iter]) != 1)
-			print_error("FORMAT ERROR STUPIDO");
+			print_error("One of the arguments is not a positive integer");
 		iter++;
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:59:36 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/17 21:34:55 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/18 21:20:14 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,9 @@ void					print_success(char *message);
 void					init_data(t_data *data, char **argv);
 int						str_is_numeric(char *str);
 long					ft_atoi_long(const char *str);
+int						convert_string_to_integer(char *str);
 
 /* SOURCE FILES */
-void					parse_input(t_data data, char **argv);
+void					parse_input(t_data *data, char **argv);
 
 #endif
