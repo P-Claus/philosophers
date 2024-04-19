@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 21:29:42 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/18 20:51:19 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/19 18:09:57 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,16 @@ int	check_if_string_is_int(char **argv)
 	{
 		nb = 0;
 		if (calculate_strlen(argv[iter]) > 10)
+		{
 			print_error("One of the arguments is too big for a long");
+			return (1);
+		}
 		nb = ft_atoi_long(argv[iter]);
 		if (nb > INT_MAX)
+		{
 			print_error("One of the arguments is bigger than MAX_INT");
+			return (1);
+		}
 		iter++;
 	}
 	return (0);

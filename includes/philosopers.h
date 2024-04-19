@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:59:36 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/18 21:20:14 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/19 21:17:20 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ typedef struct s_philosopher
 	long				nb_of_meals;
 	bool				is_full;
 	long				time_since_last_meal;
-	t_fork				*left_fork;
-	t_fork				*right_fork;
+	t_fork				*first_fork;
+	t_fork				*second_fork;
 	pthread_t			thread_id;
 	t_data				*data;
 }						t_philosopher;
@@ -58,6 +58,8 @@ typedef struct s_data
 	long				max_amount_of_meals;
 	long				start_simulation;
 	bool				end_simulation;
+	bool				all_threads_ready;
+	pthread_mutex_t		data_mutex;
 	t_fork				*forks;
 	t_philosopher		*philosophers;
 }						t_data;
@@ -68,12 +70,14 @@ int						check_if_string_is_int(char **argv);
 /* UTILS */
 void					print_error(char *error);
 void					print_success(char *message);
-void					init_data(t_data *data, char **argv);
 int						str_is_numeric(char *str);
 long					ft_atoi_long(const char *str);
 int						convert_string_to_integer(char *str);
 
 /* SOURCE FILES */
-void					parse_input(t_data *data, char **argv);
+int						parse_input(t_data *data, char **argv);
+int						init_data(t_data *data);
+void					init_philosophers(t_data *data);
+void					start_dinner(t_data *data);
 
 #endif

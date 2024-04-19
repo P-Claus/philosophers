@@ -6,18 +6,32 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:21:22 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/17 19:30:07 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/19 21:18:41 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosopers.h"
 
-void	init_data(t_data *data, char **argv)
+int	init_data(t_data *data)
 {
-	data->nb_of_philosophers = atoi(argv[1]);
-	// data->time_to_die = argv[2];
-	// data->time_to_eat = argv[3];
-	// data->time_to_sleep = argv[4];
-	// if (argv[5])
-	// data->max_amount_of_meals = argv[5];
+	int	iter;
+
+	iter = 0;
+	data->end_simulation = false;
+	data->all_threads_ready = false;
+	data->philosophers = (t_philosopher *)malloc(sizeof(t_philosopher)
+			* data->nb_of_philosophers);
+	if (!data->philosophers)
+		return (1);
+	pthread_mutex_init(&data->data_mutex, NULL);
+	data->forks = (t_fork *)(malloc(sizeof(t_fork) * data->nb_of_philosophers));
+	if (!data->forks)
+		return (1);
+	while (iter++ < data->nb_of_philosophers)
+	{
+		pthread_mutex_init(&data->forks[iter].fork, NULL);
+		data->forks[iter].fork_id = iter;
+	}
+	init_philosophers(data);
+	return (0);
 }

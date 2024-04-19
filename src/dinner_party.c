@@ -1,45 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_if_string_is_numeric.c                       :+:      :+:    :+:   */
+/*   dinner_party.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/17 21:23:20 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/19 18:03:53 by pclaus           ###   ########.fr       */
+/*   Created: 2024/04/19 19:36:32 by pclaus            #+#    #+#             */
+/*   Updated: 2024/04/19 21:13:46 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosopers.h"
 
-int	check_if_string_is_numeric(char **argv)
+void	*dinner_simulation(void *data)
 {
-	int	iter;
+	t_philosopher	*philosopher;
 
-	iter = 1;
-	while (argv[iter])
-	{
-		if (str_is_numeric(argv[iter]) != 1)
-		{
-			print_error("One of the arguments is not a positive integer");
-			return (1);
-		}
-		iter++;
-	}
+	philosopher = (t_philosopher *)data;
+	wait_for_all_threads();
 	return (0);
 }
 
-int	str_is_numeric(char *str)
+void	start_dinner(t_data *data)
 {
-	int	count;
-
-	count = 0;
-	while (str[count] && str[count] != '\0')
+	int iter = 0;
+	if (data->max_amount_of_meals == 0)
+		return ;
+	if (data->nb_of_philosophers == 1)
+		; // to do
+	else
 	{
-		if ((str[count] >= '0') && (str[count] <= '9'))
-			count++;
-		else
-			return (0);
+		while (iter < data->nb_of_philosophers)
+		{
+			pthread_create(&data->philosophers[iter].thread_id,
+				dinner_simulation(data), &data->philosophers[iter], NULL);
+		}
 	}
-	return (1);
 }
