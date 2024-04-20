@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:59:36 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/19 21:17:20 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/20 14:29:35 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct s_data
 	t_fork				*forks;
 	t_philosopher		*philosophers;
 }						t_data;
+
 /* ERROR CHECKING */
 int						check_if_string_is_numeric(char **argv);
 int						check_if_string_is_int(char **argv);
@@ -73,6 +74,7 @@ void					print_success(char *message);
 int						str_is_numeric(char *str);
 long					ft_atoi_long(const char *str);
 int						convert_string_to_integer(char *str);
+int						safe_malloc(size_t bytes);
 
 /* SOURCE FILES */
 int						parse_input(t_data *data, char **argv);

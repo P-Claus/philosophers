@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 19:36:32 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/19 21:13:46 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/20 14:29:57 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	*dinner_simulation(void *data)
 	t_philosopher	*philosopher;
 
 	philosopher = (t_philosopher *)data;
-	wait_for_all_threads();
+	// wait_for_all_threads(philosopher->data);
 	return (0);
 }
 

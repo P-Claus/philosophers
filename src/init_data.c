@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:21:22 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/19 21:18:41 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/20 14:48:06 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	init_data(t_data *data)
 {
 	int	iter;
 
-	iter = 0;
+	iter = -1;
 	data->end_simulation = false;
 	data->all_threads_ready = false;
 	data->philosophers = (t_philosopher *)malloc(sizeof(t_philosopher)
@@ -27,7 +27,7 @@ int	init_data(t_data *data)
 	data->forks = (t_fork *)(malloc(sizeof(t_fork) * data->nb_of_philosophers));
 	if (!data->forks)
 		return (1);
-	while (iter++ < data->nb_of_philosophers)
+	while (++iter < data->nb_of_philosophers)
 	{
 		pthread_mutex_init(&data->forks[iter].fork, NULL);
 		data->forks[iter].fork_id = iter;
