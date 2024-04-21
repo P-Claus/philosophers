@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:59:36 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/20 14:29:35 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/21 15:45:48 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,27 @@ typedef struct s_data
 	bool				end_simulation;
 	bool				all_threads_ready;
 	pthread_mutex_t		data_mutex;
+	pthread_mutex_t		write_mutex;
 	t_fork				*forks;
 	t_philosopher		*philosophers;
 }						t_data;
+
+typedef enum e_time_code
+{
+	SECOND,
+	MILLISECOND,
+	MICROSECOND,
+}						t_time_code;
+
+typedef enum s_philosopher_states
+{
+	EATING,
+	SLEEPING,
+	THINKING,
+	TAKE_FIRST_FORK,
+	TAKE_SECOND_FORK,
+	DIED,
+}						t_philosopher_status;
 
 /* ERROR CHECKING */
 int						check_if_string_is_numeric(char **argv);
@@ -74,12 +92,25 @@ void					print_success(char *message);
 int						str_is_numeric(char *str);
 long					ft_atoi_long(const char *str);
 int						convert_string_to_integer(char *str);
-int						safe_malloc(size_t bytes);
+void					wait_for_all_threads(t_data *data);
+long					get_time(t_time_code time_code);
+void					ft_usleep(long usec, t_data *data);
+void					write_status(t_philosopher_status status,
+							t_philosopher *philosopher);
 
 /* SOURCE FILES */
 int						parse_input(t_data *data, char **argv);
 int						init_data(t_data *data);
 void					init_philosophers(t_data *data);
 void					start_dinner(t_data *data);
+
+/* GETTERS AND SETTERS */
+
+void					set_bool(pthread_mutex_t *mutex, bool *dest,
+							bool value);
+bool					get_bool(pthread_mutex_t *mutex, bool *value);
+void					set_long(pthread_mutex_t *mutex, long *dest,
+							long value);
+void					get_long(pthread_mutex_t *mutex, long *value);
 
 #endif

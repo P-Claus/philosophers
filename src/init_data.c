@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:21:22 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/20 14:48:06 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/21 15:18:34 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	init_data(t_data *data)
 	if (!data->philosophers)
 		return (1);
 	pthread_mutex_init(&data->data_mutex, NULL);
+	pthread_mutex_init(&data->write_mutex, NULL);
 	data->forks = (t_fork *)(malloc(sizeof(t_fork) * data->nb_of_philosophers));
 	if (!data->forks)
 		return (1);
