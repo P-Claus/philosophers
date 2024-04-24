@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:59:36 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/21 15:45:48 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/24 20:34:28 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_philosopher
 	t_fork				*first_fork;
 	t_fork				*second_fork;
 	pthread_t			thread_id;
+	pthread_mutex_t		philosopher_mutex;
 	t_data				*data;
 }						t_philosopher;
 
@@ -72,7 +73,7 @@ typedef enum e_time_code
 	MICROSECOND,
 }						t_time_code;
 
-typedef enum s_philosopher_states
+typedef enum s_philosopher_status
 {
 	EATING,
 	SLEEPING,
@@ -111,6 +112,6 @@ void					set_bool(pthread_mutex_t *mutex, bool *dest,
 bool					get_bool(pthread_mutex_t *mutex, bool *value);
 void					set_long(pthread_mutex_t *mutex, long *dest,
 							long value);
-void					get_long(pthread_mutex_t *mutex, long *value);
+bool					get_long(pthread_mutex_t *mutex, long *value);
 
 #endif

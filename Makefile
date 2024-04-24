@@ -11,13 +11,13 @@ CFLAGS			= -Wall -Werror -Wextra -g $(INCLUDES) -pthread
 MKDIR			= mkdir -p
 
 SOURCES_DIR		= src
-SOURCES			= main.c init_data.c init_philosophers.c
-OBJ				= $(OBJ_DIR)/main.o $(OBJ_DIR)/init_data.o $(OBJ_DIR)/init_philosophers.o
+SOURCES			= main.c init_data.c init_philosophers.c dinner_party.c
+OBJ				= $(OBJ_DIR)/main.o $(OBJ_DIR)/init_data.o $(OBJ_DIR)/init_philosophers.o $(OBJ_DIR)/dinner_party.o
 OBJ_DIR			= obj
 
 UTILS_DIR 		= utils
-UTILS_FILES		= print_error.c print_success.c parse_input.c 
-UTILS_OBJ		= $(OBJ_DIR)/print_error.o $(OBJ_DIR)/print_success.o $(OBJ_DIR)/parse_input.o 
+UTILS_FILES		= print_error.c print_success.c parse_input.c ft_usleep.c get_time.c getters_and_setters.c synchronization_functions.c write_status.c
+UTILS_OBJ		= $(OBJ_DIR)/print_error.o $(OBJ_DIR)/print_success.o $(OBJ_DIR)/parse_input.o $(OBJ_DIR)/ft_usleep.o $(OBJ_DIR)/get_time.o $(OBJ_DIR)/getters_and_setters.o $(OBJ_DIR)/synchronization_functions.o $(OBJ_DIR)/write_status.o 
 
 ERROR_DIR 		= error_checks
 ERROR_FILES		= check_if_string_is_numeric.c check_if_string_is_int.c

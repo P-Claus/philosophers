@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:43:55 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/21 14:55:49 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/24 20:34:06 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	set_long(pthread_mutex_t *mutex, long *dest, long value)
 	pthread_mutex_unlock(mutex);
 }
 
-void	get_long(pthread_mutex_t *mutex, long *value)
+bool	get_long(pthread_mutex_t *mutex, long *value)
 {
 	long	return_value;
 

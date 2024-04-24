@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:42:40 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/21 14:36:19 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/24 20:35:17 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	wait_for_all_threads(t_data *data)
 {
-	while (!get_bool(&data->data_mutex, data->all_threads_ready))
+	while (!get_bool(&data->data_mutex, &data->all_threads_ready))
 		;
 }

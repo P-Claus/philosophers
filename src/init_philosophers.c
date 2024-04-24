@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:31:30 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/20 15:15:50 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/24 18:39:48 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	init_philosophers(t_data *data)
 		philosopher->is_full = false;
 		philosopher->nb_of_meals = 0;
 		philosopher->data = data;
+		pthread_mutex_init(&philosopher->philosopher_mutex, NULL);
 		assign_forks(philosopher, data->forks, iter);
 	}
 }

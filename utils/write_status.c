@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 15:16:07 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/21 15:45:37 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/24 20:42:49 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,12 @@ void	write_status(t_philosopher_status status, t_philosopher *philosopher)
 	pthread_mutex_lock(&philosopher->data->write_mutex);
 	if ((status == TAKE_FIRST_FORK || status == TAKE_SECOND_FORK)
 		&& !philosopher->data->end_simulation)
-		printf(YELLOW "%-6ld" RESET " %d has taken a fork\n", elapsed,
+		printf(GREEN "%-6ld %d has taken a fork\n" RESET, elapsed,
 			philosopher->id);
 	else if (status == EATING && !philosopher->data->end_simulation)
-		printf(YELLOW "&-6ld %d is eating\n" RESET, elapsed, philosopher->id);
+		printf(YELLOW "%-6ld %d is eating\n" RESET, elapsed, philosopher->id);
 	else if (status == SLEEPING && !philosopher->data->end_simulation)
-		printf(YELLOW "%-6ld" RESET " %d is sleeping\n", elapsed,
-			philosopher->id);
+		printf(BLUE "%-6ld %d is sleeping\n" RESET, elapsed, philosopher->id);
 	else if (status == THINKING && !philosopher->data->end_simulation)
 		printf(YELLOW "%-6ld" RESET " %d is thinking\n", elapsed,
 			philosopher->id);
