@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 14:40:27 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/21 14:49:32 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/25 19:45:53 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,5 @@ long	get_time(t_time_code time_code)
 		print_error("Wrong input to get time!");
 		return (1);
 	}
-	return (420);
+	return (69);
 }

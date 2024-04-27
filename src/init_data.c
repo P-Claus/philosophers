@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:21:22 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/21 15:18:34 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/25 16:33:06 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	init_data(t_data *data)
 	iter = -1;
 	data->end_simulation = false;
 	data->all_threads_ready = false;
+	data->nb_of_threads_running = 0;
 	data->philosophers = (t_philosopher *)malloc(sizeof(t_philosopher)
 			* data->nb_of_philosophers);
 	if (!data->philosophers)

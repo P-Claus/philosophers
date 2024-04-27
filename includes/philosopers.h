@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:59:36 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/24 20:34:28 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/25 19:55:37 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ typedef struct s_data
 	long				start_simulation;
 	bool				end_simulation;
 	bool				all_threads_ready;
+	long				nb_of_threads_running;
+	pthread_t			monitor;
 	pthread_mutex_t		data_mutex;
 	pthread_mutex_t		write_mutex;
 	t_fork				*forks;
@@ -98,12 +100,17 @@ long					get_time(t_time_code time_code);
 void					ft_usleep(long usec, t_data *data);
 void					write_status(t_philosopher_status status,
 							t_philosopher *philosopher);
+void					increase_amount_of_threads(pthread_mutex_t *mutex,
+							long *value);
+bool					all_threads_running(pthread_mutex_t *mutex,
+							long *nb_of_threads, long nb_of_philosophers);
 
 /* SOURCE FILES */
 int						parse_input(t_data *data, char **argv);
 int						init_data(t_data *data);
 void					init_philosophers(t_data *data);
 void					start_dinner(t_data *data);
+void					*monitor_dinner(void *table);
 
 /* GETTERS AND SETTERS */
 
@@ -112,6 +119,7 @@ void					set_bool(pthread_mutex_t *mutex, bool *dest,
 bool					get_bool(pthread_mutex_t *mutex, bool *value);
 void					set_long(pthread_mutex_t *mutex, long *dest,
 							long value);
-bool					get_long(pthread_mutex_t *mutex, long *value);
+long					get_long(pthread_mutex_t *mutex, long *value);
+bool					simulation_finished(t_data *data);
 
 #endif

@@ -6,11 +6,27 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 19:36:32 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/24 20:29:48 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/27 14:47:29 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosopers.h"
+
+void	*handle_one_philosopher(void *data)
+{
+	t_philosopher	*philosopher;
+
+	philosopher = (t_philosopher *)data;
+	wait_for_all_threads(philosopher->data);
+	set_long(&philosopher->philosopher_mutex,
+		&philosopher->time_since_last_meal, get_time(MILLISECOND));
+	increase_amount_of_threads(&philosopher->data->data_mutex,
+		&philosopher->data->nb_of_threads_running);
+	write_status(TAKE_FIRST_FORK, philosopher);
+	while (!simulation_finished(philosopher->data))
+		usleep(200);
+	return (NULL);
+}
 
 static void	think_philosopher(t_philosopher *philosopher)
 {
@@ -41,10 +57,16 @@ void	*dinner_simulation(void *data)
 
 	philosopher = (t_philosopher *)data;
 	wait_for_all_threads(philosopher->data);
-	while (philosopher->data->end_simulation == false)
+	/*set the time of the last meal*/
+	set_long(&philosopher->philosopher_mutex,
+		&philosopher->time_since_last_meal, get_time(MILLISECOND));
+	/*increase the amount to sync with the monitor function*/
+	increase_amount_of_threads(&philosopher->data->data_mutex,
+		&philosopher->data->nb_of_threads_running);
+	while (!simulation_finished(philosopher->data))
 	{
-		// 1) if (philosopher->is_full)
-		// break ;
+		if (philosopher->is_full)
+			break ;
 		// 2)eat
 		eat_philosopher(philosopher);
 		// 3)sleep
@@ -60,21 +82,25 @@ void	start_dinner(t_data *data)
 {
 	int	iter;
 
-	iter = -1;
+	iter = 0;
 	if (data->max_amount_of_meals == 0)
 		return ;
 	if (data->nb_of_philosophers == 1)
-		; // to do
+		pthread_create(&data->philosophers[0].thread_id, NULL,
+			handle_one_philosopher, &data->philosophers[0]);
 	else
 	{
-		while (++iter < data->nb_of_philosophers)
+		while (iter < data->nb_of_philosophers)
 		{
+			// printf("nb of philosophers: %ld\n", data->nb_of_philosophers);
 			pthread_create(&data->philosophers[iter].thread_id, NULL,
 				dinner_simulation, &data->philosophers[iter]);
+			iter++;
 		}
-		data->start_simulation = get_time(MILLISECOND);
-		set_bool(&data->data_mutex, &data->all_threads_ready, true);
 	}
+	pthread_create(&data->monitor, NULL, monitor_dinner, data);
+	data->start_simulation = get_time(MILLISECOND);
+	set_bool(&data->data_mutex, &data->all_threads_ready, true);
 	iter = -1;
 	while (++iter < data->nb_of_philosophers)
 	{

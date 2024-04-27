@@ -11,8 +11,8 @@ CFLAGS			= -Wall -Werror -Wextra -g $(INCLUDES) -pthread
 MKDIR			= mkdir -p
 
 SOURCES_DIR		= src
-SOURCES			= main.c init_data.c init_philosophers.c dinner_party.c
-OBJ				= $(OBJ_DIR)/main.o $(OBJ_DIR)/init_data.o $(OBJ_DIR)/init_philosophers.o $(OBJ_DIR)/dinner_party.o
+SOURCES			= main.c init_data.c init_philosophers.c dinner_party.c monitor.c
+OBJ				= $(OBJ_DIR)/main.o $(OBJ_DIR)/init_data.o $(OBJ_DIR)/init_philosophers.o $(OBJ_DIR)/dinner_party.o $(OBJ_DIR)/monitor.o
 OBJ_DIR			= obj
 
 UTILS_DIR 		= utils
