@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 19:36:32 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/27 14:47:29 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/28 10:50:38 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,19 @@ void	*handle_one_philosopher(void *data)
 	return (NULL);
 }
 
-static void	think_philosopher(t_philosopher *philosopher)
+void	think_philosopher(t_philosopher *philosopher, bool first_function_call)
 {
-	write_status(THINKING, philosopher);
+	long	time_to_think;
+
+	if (!first_function_call)
+		write_status(THINKING, philosopher);
+	if (philosopher->data->nb_of_philosophers % 2 == 0)
+		return ;
+	time_to_think = philosopher->data->time_to_eat * 2
+		- philosopher->data->time_to_sleep;
+	if (time_to_think < 0)
+		time_to_think = 0;
+	ft_usleep(time_to_think * 0.42, philosopher->data);
 }
 
 static void	eat_philosopher(t_philosopher *philosopher)
@@ -63,6 +73,7 @@ void	*dinner_simulation(void *data)
 	/*increase the amount to sync with the monitor function*/
 	increase_amount_of_threads(&philosopher->data->data_mutex,
 		&philosopher->data->nb_of_threads_running);
+	desynchronise_philosophers(philosopher);
 	while (!simulation_finished(philosopher->data))
 	{
 		if (philosopher->is_full)
@@ -73,7 +84,7 @@ void	*dinner_simulation(void *data)
 		write_status(SLEEPING, philosopher);
 		ft_usleep(philosopher->data->time_to_sleep, philosopher->data);
 		// 4)thinking
-		think_philosopher(philosopher);
+		think_philosopher(philosopher, false);
 	}
 	return (0);
 }
@@ -92,7 +103,6 @@ void	start_dinner(t_data *data)
 	{
 		while (iter < data->nb_of_philosophers)
 		{
-			// printf("nb of philosophers: %ld\n", data->nb_of_philosophers);
 			pthread_create(&data->philosophers[iter].thread_id, NULL,
 				dinner_simulation, &data->philosophers[iter]);
 			iter++;
@@ -103,7 +113,7 @@ void	start_dinner(t_data *data)
 	set_bool(&data->data_mutex, &data->all_threads_ready, true);
 	iter = -1;
 	while (++iter < data->nb_of_philosophers)
-	{
 		pthread_join(data->philosophers[iter].thread_id, NULL);
-	}
+	set_bool(&data->data_mutex, &data->end_simulation, true);
+	pthread_join(data->monitor, NULL);
 }

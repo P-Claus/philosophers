@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:59:36 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/25 19:55:37 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/28 10:51:03 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ void					increase_amount_of_threads(pthread_mutex_t *mutex,
 							long *value);
 bool					all_threads_running(pthread_mutex_t *mutex,
 							long *nb_of_threads, long nb_of_philosophers);
+void					cleanup(t_data *data);
+void					desynchronise_philosophers(t_philosopher *philosopher);
 
 /* SOURCE FILES */
 int						parse_input(t_data *data, char **argv);
@@ -111,6 +113,8 @@ int						init_data(t_data *data);
 void					init_philosophers(t_data *data);
 void					start_dinner(t_data *data);
 void					*monitor_dinner(void *table);
+void					think_philosopher(t_philosopher *philosopher,
+							bool first_function_call);
 
 /* GETTERS AND SETTERS */
 

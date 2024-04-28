@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:42:40 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/25 16:46:50 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/28 10:51:35 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,18 @@ void	increase_amount_of_threads(pthread_mutex_t *mutex, long *value)
 	pthread_mutex_lock(mutex);
 	(*value)++;
 	pthread_mutex_unlock(mutex);
+}
+
+void	desynchronise_philosophers(t_philosopher *philosopher)
+{
+	if (philosopher->data->nb_of_philosophers % 2 == 0)
+	{
+		if (philosopher->id % 2 == 0)
+			ft_usleep(30000, philosopher->data);
+	}
+	else
+	{
+		if (philosopher->id % 2 != 0)
+			think_philosopher(philosopher, true);
+	}
 }

@@ -1,36 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_usleep.c                                        :+:      :+:    :+:   */
+/*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/21 15:05:14 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/27 15:18:06 by pclaus           ###   ########.fr       */
+/*   Created: 2024/04/27 15:07:07 by pclaus            #+#    #+#             */
+/*   Updated: 2024/04/27 15:14:13 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosopers.h"
 
-void	ft_usleep(long usec, t_data *data)
+void	cleanup(t_data *data)
 {
-	long	start;
-	long	elapsed;
-	long	remaining;
+	t_philosopher *philosopher;
+	int iter = 0;
 
-	start = get_time(MICROSECOND);
-	while (get_time(MICROSECOND) - start < usec)
+	while (iter < data->nb_of_philosophers)
 	{
-		if (simulation_finished(data))
-			break ;
-		elapsed = get_time(MICROSECOND) - start;
-		remaining = usec - elapsed;
-		if (remaining > 1000)
-			usleep(remaining / 2);
-		else
-		{
-			while (get_time(MICROSECOND) - start < usec)
-				;
-		}
+		philosopher = data->philosophers + iter;
+		pthread_mutex_destroy(&philosopher->philosopher_mutex);
+		iter++;
 	}
+	pthread_mutex_destroy(&data->write_mutex);
+	pthread_mutex_destroy(&data->data_mutex);
+	free(data->forks);
+	free(data->philosophers);
 }
