@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 19:36:32 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/28 10:50:38 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/30 18:10:23 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ void	think_philosopher(t_philosopher *philosopher, bool first_function_call)
 		write_status(THINKING, philosopher);
 	if (philosopher->data->nb_of_philosophers % 2 == 0)
 		return ;
-	time_to_think = philosopher->data->time_to_eat * 2
+	time_to_think = (philosopher->data->time_to_eat * 2)
 		- philosopher->data->time_to_sleep;
 	if (time_to_think < 0)
 		time_to_think = 0;
-	ft_usleep(time_to_think * 0.42, philosopher->data);
+	ft_usleep(time_to_think * 0.19, philosopher->data);
 }
 
 static void	eat_philosopher(t_philosopher *philosopher)
