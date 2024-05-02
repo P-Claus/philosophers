@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 19:36:32 by pclaus            #+#    #+#             */
-/*   Updated: 2024/05/02 19:30:15 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/05/02 19:44:10 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,11 @@ static void	eat_philosopher(t_philosopher *philosopher)
 	write_status(TAKE_FIRST_FORK, philosopher);
 	pthread_mutex_lock(&philosopher->second_fork->fork);
 	write_status(TAKE_SECOND_FORK, philosopher);
-	set_long(&philosopher->philosopher_mutex,
-		&philosopher->time_since_last_meal, get_time(MILLISECOND));
-	printf("The time since last meal is for philo %d is: %ld\n",
-		philosopher->id, get_time(MILLISECOND));
 	philosopher->nb_of_meals++;
 	write_status(EATING, philosopher);
 	ft_usleep(philosopher->data->time_to_eat, philosopher->data);
+	set_long(&philosopher->philosopher_mutex,
+		&philosopher->time_since_last_meal, get_time(MILLISECOND));
 	if (philosopher->data->max_amount_of_meals > 0
 		&& philosopher->nb_of_meals == philosopher->data->max_amount_of_meals)
 		set_bool(&philosopher->philosopher_mutex, &philosopher->is_full, true);
