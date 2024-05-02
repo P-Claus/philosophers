@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 19:36:32 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/30 18:10:23 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/05/02 19:30:15 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	think_philosopher(t_philosopher *philosopher, bool first_function_call)
 		- philosopher->data->time_to_sleep;
 	if (time_to_think < 0)
 		time_to_think = 0;
-	ft_usleep(time_to_think * 0.19, philosopher->data);
+	ft_usleep(time_to_think * 0.42, philosopher->data);
 }
 
 static void	eat_philosopher(t_philosopher *philosopher)
@@ -51,6 +51,8 @@ static void	eat_philosopher(t_philosopher *philosopher)
 	write_status(TAKE_SECOND_FORK, philosopher);
 	set_long(&philosopher->philosopher_mutex,
 		&philosopher->time_since_last_meal, get_time(MILLISECOND));
+	printf("The time since last meal is for philo %d is: %ld\n",
+		philosopher->id, get_time(MILLISECOND));
 	philosopher->nb_of_meals++;
 	write_status(EATING, philosopher);
 	ft_usleep(philosopher->data->time_to_eat, philosopher->data);
