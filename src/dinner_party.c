@@ -6,11 +6,11 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 19:36:32 by pclaus            #+#    #+#             */
-/*   Updated: 2024/07/17 16:27:14 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/07/18 09:14:04 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philosopers.h"
+#include "../includes/philosophers.h"
 
 void	*handle_one_philosopher(void *data)
 {

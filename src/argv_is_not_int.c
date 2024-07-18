@@ -6,11 +6,11 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 21:29:42 by pclaus            #+#    #+#             */
-/*   Updated: 2024/07/16 20:53:44 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/07/18 09:12:04 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philosopers.h"
+#include "../includes/philosophers.h"
 
 long	ft_atoi_long(const char *str)
 {

@@ -6,11 +6,11 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 21:23:20 by pclaus            #+#    #+#             */
-/*   Updated: 2024/07/16 20:54:07 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/07/18 09:13:01 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philosopers.h"
+#include "../includes/philosophers.h"
 
 static int	str_is_not_numeric(char *str)
 {

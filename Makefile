@@ -4,35 +4,35 @@
 
 NAME			= philosopers
 
-CC			= cc
-RM			= rm -rf
+CC				= cc
+RM				= rm -rf
 CFLAGS			= -Wall -Werror -Wextra -g $(INCLUDES) -pthread
 
 MKDIR			= mkdir -p
 
 SOURCES_DIR		= src
-SOURCE_FILES		= argv_is_not_int.c argv_is_not_numeric.c main.c init_data.c \
-			  init_philosophers.c dinner_party.c monitor.c cleanup.c ft_usleep.c \
-			  get_time.c getters_and_setters.c parse_input.c print_error.c \
-			  print_success.c synchronization_functions.c write_status.c
+SOURCE_FILES	= argv_is_not_int.c argv_is_not_numeric.c main.c init_data.c \
+			  	init_philosophers.c dinner_party.c monitor.c cleanup.c ft_usleep.c \
+			  	get_time.c getters_and_setters.c parse_input.c print_error.c \
+			 	synchronization_functions.c write_status.c
 
 SOURCES			= $(addprefix $(SOURCES_DIR)/, $(SOURCE_FILES))
 
-OBJ			= $(addprefix $(OBJ_DIR)/, $(notdir $(SOURCES:.c=.o)))
+OBJ				= $(addprefix $(OBJ_DIR)/, $(notdir $(SOURCES:.c=.o)))
 OBJ_DIR			= obj
 
 
 INCLUDES		= -I ./includes
 
-TOTAL_FILES = $(words $(SOURCE_FILES)) 
+TOTAL_FILES 	= $(words $(SOURCE_FILES)) 
 
-COMPILE_COUNT = 0
+COMPILE_COUNT 	= 0
 
 #############################################
 ###		COLORS			  ###
 #############################################
 
-RED			= \033[0;31m
+RED				= \033[0;31m
 GREEN			= \033[0;32m
 YELLOW			= \033[0;33m
 BLUE			= \033[0;34m

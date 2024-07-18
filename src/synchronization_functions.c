@@ -6,11 +6,11 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:42:40 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/28 10:51:35 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/07/18 09:19:42 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philosopers.h"
+#include "../includes/philosophers.h"
 
 void	wait_for_all_threads(t_data *data)
 {

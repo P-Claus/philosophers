@@ -6,11 +6,11 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 21:06:54 by pclaus            #+#    #+#             */
-/*   Updated: 2024/07/16 18:18:28 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/07/18 09:11:46 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philosopers.h"
+#include "../includes/philosophers.h"
 
 static int	convert_string_to_integer(char *str)
 {
@@ -52,4 +52,3 @@ int	parse_input(t_data *data, char **argv)
 		data->max_amount_of_meals = -1;
 	return (0);
 }
-

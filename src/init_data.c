@@ -6,11 +6,11 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:21:22 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/25 16:33:06 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/07/18 09:15:47 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philosopers.h"
+#include "../includes/philosophers.h"
 
 int	init_data(t_data *data)
 {

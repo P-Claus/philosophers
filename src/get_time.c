@@ -6,15 +6,15 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 14:40:27 by pclaus            #+#    #+#             */
-/*   Updated: 2024/07/17 14:51:59 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/07/18 09:14:50 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philosopers.h"
+#include "../includes/philosophers.h"
 
 long	get_time(t_time_code time_code)
 {
-	struct timeval tv;
+	struct timeval	tv;
 
 	if (gettimeofday(&tv, NULL))
 		return (1);

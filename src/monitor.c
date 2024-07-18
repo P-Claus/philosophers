@@ -6,11 +6,11 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:27:50 by pclaus            #+#    #+#             */
-/*   Updated: 2024/07/17 15:53:38 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/07/18 09:18:14 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philosopers.h"
+#include "../includes/philosophers.h"
 
 static bool	philosopher_has_died(t_philosopher *philosopher)
 {

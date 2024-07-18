@@ -6,11 +6,11 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:43:55 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/25 19:55:24 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/07/18 09:15:23 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philosopers.h"
+#include "../includes/philosophers.h"
 
 void	set_bool(pthread_mutex_t *mutex, bool *dest, bool value)
 {

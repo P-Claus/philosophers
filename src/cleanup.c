@@ -6,17 +6,18 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 15:07:07 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/27 15:14:13 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/07/18 09:13:36 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philosopers.h"
+#include "../includes/philosophers.h"
 
 void	cleanup(t_data *data)
 {
-	t_philosopher *philosopher;
-	int iter = 0;
+	t_philosopher	*philosopher;
+	int				iter;
 
+	iter = 0;
 	while (iter < data->nb_of_philosophers)
 	{
 		philosopher = data->philosophers + iter;

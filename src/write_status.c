@@ -6,11 +6,11 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 15:16:07 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/24 20:42:49 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/07/18 09:20:00 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philosopers.h"
+#include "../includes/philosophers.h"
 
 void	write_status(t_philosopher_status status, t_philosopher *philosopher)
 {

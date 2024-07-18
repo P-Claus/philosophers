@@ -6,11 +6,11 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:31:30 by pclaus            #+#    #+#             */
-/*   Updated: 2024/07/17 10:00:24 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/07/18 09:16:03 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philosopers.h"
+#include "../includes/philosophers.h"
 
 static void	assign_forks(t_philosopher *philosopher, t_fork *forks,
 		int position_of_philosopher)

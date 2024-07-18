@@ -6,11 +6,11 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 15:05:14 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/27 15:18:06 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/07/18 09:14:24 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philosopers.h"
+#include "../includes/philosophers.h"
 
 void	ft_usleep(long usec, t_data *data)
 {
