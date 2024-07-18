@@ -1,41 +1,38 @@
 #############################################
-###		 			CONFIG		          ###
+###		 CONFIG		          ###
 #############################################
 
 NAME			= philosopers
 
-CC				= cc
-RM				= rm -rf
+CC			= cc
+RM			= rm -rf
 CFLAGS			= -Wall -Werror -Wextra -g $(INCLUDES) -pthread
 
 MKDIR			= mkdir -p
 
 SOURCES_DIR		= src
-SOURCES			= main.c init_data.c init_philosophers.c dinner_party.c monitor.c
-OBJ				= $(OBJ_DIR)/main.o $(OBJ_DIR)/init_data.o $(OBJ_DIR)/init_philosophers.o $(OBJ_DIR)/dinner_party.o $(OBJ_DIR)/monitor.o
+SOURCE_FILES		= argv_is_not_int.c argv_is_not_numeric.c main.c init_data.c \
+			  init_philosophers.c dinner_party.c monitor.c cleanup.c ft_usleep.c \
+			  get_time.c getters_and_setters.c parse_input.c print_error.c \
+			  print_success.c synchronization_functions.c write_status.c
+
+SOURCES			= $(addprefix $(SOURCES_DIR)/, $(SOURCE_FILES))
+
+OBJ			= $(addprefix $(OBJ_DIR)/, $(notdir $(SOURCES:.c=.o)))
 OBJ_DIR			= obj
-
-UTILS_DIR 		= utils
-UTILS_FILES		= print_error.c print_success.c parse_input.c ft_usleep.c get_time.c getters_and_setters.c synchronization_functions.c write_status.c cleanup.c
-UTILS_OBJ		= $(OBJ_DIR)/print_error.o $(OBJ_DIR)/print_success.o $(OBJ_DIR)/parse_input.o $(OBJ_DIR)/ft_usleep.o $(OBJ_DIR)/get_time.o $(OBJ_DIR)/getters_and_setters.o $(OBJ_DIR)/synchronization_functions.o $(OBJ_DIR)/write_status.o $(OBJ_DIR)/cleanup.o
-
-ERROR_DIR 		= error_checks
-ERROR_FILES		= check_if_string_is_numeric.c check_if_string_is_int.c
-ERROR_OBJ		= $(OBJ_DIR)/check_if_string_is_numeric.o $(OBJ_DIR)/check_if_string_is_int.o
-
 
 
 INCLUDES		= -I ./includes
 
-TOTAL_FILES := $(words $(wildcard $(SOURCES_DIR)/*.c) $(wildcard $(UTILS_DIR)/*.c))
+TOTAL_FILES = $(words $(SOURCE_FILES)) 
 
 COMPILE_COUNT = 0
 
 #############################################
-###					COLORS			      ###
+###		COLORS			  ###
 #############################################
 
-RED				= \033[0;31m
+RED			= \033[0;31m
 GREEN			= \033[0;32m
 YELLOW			= \033[0;33m
 BLUE			= \033[0;34m
@@ -46,7 +43,7 @@ MOVEUP			= \033[F
 RESET			= \e[2K\r
 
 #############################################
-###		 			RULES	      	      ###
+###		 RULES	      	     	  ###
 #############################################
 
 all: $(NAME)

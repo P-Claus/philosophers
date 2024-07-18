@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:31:30 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/24 18:39:48 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/07/17 10:00:24 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,6 @@ static void	assign_forks(t_philosopher *philosopher, t_fork *forks,
 		philosopher->second_fork = &forks[(position_of_philosopher + 1)
 			% philo_nb];
 	}
-	/*
-	if (philosopher->id % 2 != 0)
-	{
-		philosopher->first_fork = &forks[(position_of_philosopher + 1)
-			% philo_nb];
-		philosopher->second_fork = &forks[position_of_philosopher];
-	}
-	*/
 }
 
 void	init_philosophers(t_data *data)

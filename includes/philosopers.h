@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:59:36 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/28 10:51:03 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/07/17 15:31:00 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_philosopher
 	int					id;
 	long				nb_of_meals;
 	bool				is_full;
-	long				time_since_last_meal;
+	long				time_of_last_meal;
 	t_fork				*first_fork;
 	t_fork				*second_fork;
 	pthread_t			thread_id;
@@ -86,24 +86,24 @@ typedef enum s_philosopher_status
 }						t_philosopher_status;
 
 /* ERROR CHECKING */
-int						check_if_string_is_numeric(char **argv);
-int						check_if_string_is_int(char **argv);
+int						argv_is_not_numeric(char **argv);
+int						argv_is_not_int(char **argv);
 
 /* UTILS */
 void					print_error(char *error);
 void					print_success(char *message);
 int						str_is_numeric(char *str);
 long					ft_atoi_long(const char *str);
-int						convert_string_to_integer(char *str);
 void					wait_for_all_threads(t_data *data);
 long					get_time(t_time_code time_code);
 void					ft_usleep(long usec, t_data *data);
-void					write_status(t_philosopher_status status,
-							t_philosopher *philosopher);
-void					increase_amount_of_threads(pthread_mutex_t *mutex,
-							long *value);
-bool					all_threads_running(pthread_mutex_t *mutex,
-							long *nb_of_threads, long nb_of_philosophers);
+void	write_status(t_philosopher_status status,
+					t_philosopher *philosopher);
+void	increase_amount_of_threads(pthread_mutex_t *mutex,
+								long *value);
+bool	all_threads_running(pthread_mutex_t *mutex,
+							long *nb_of_threads,
+							long nb_of_philosophers);
 void					cleanup(t_data *data);
 void					desynchronise_philosophers(t_philosopher *philosopher);
 
@@ -113,8 +113,8 @@ int						init_data(t_data *data);
 void					init_philosophers(t_data *data);
 void					start_dinner(t_data *data);
 void					*monitor_dinner(void *table);
-void					think_philosopher(t_philosopher *philosopher,
-							bool first_function_call);
+void	think_philosopher(t_philosopher *philosopher,
+						bool first_function_call);
 
 /* GETTERS AND SETTERS */
 

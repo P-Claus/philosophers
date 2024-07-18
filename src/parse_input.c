@@ -6,17 +6,35 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 21:06:54 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/19 18:12:59 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/07/16 18:18:28 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosopers.h"
 
+static int	convert_string_to_integer(char *str)
+{
+	int	iter;
+	int	result;
+
+	iter = 0;
+	result = 0;
+	while (str[iter] && ((str[iter] >= 9 && str[iter] <= 13)
+			|| str[iter] == 32))
+		iter++;
+	while (str[iter] >= '0' && str[iter] <= '9' && str[iter] != '\0')
+	{
+		result = result * 10 + str[iter] - '0';
+		iter++;
+	}
+	return (result);
+}
+
 int	parse_input(t_data *data, char **argv)
 {
-	if (check_if_string_is_numeric(argv) == 1)
+	if (argv_is_not_numeric(argv))
 		return (1);
-	if (check_if_string_is_int(argv) == 1)
+	if (argv_is_not_int(argv))
 		return (1);
 	data->nb_of_philosophers = convert_string_to_integer(argv[1]);
 	data->time_to_die = convert_string_to_integer(argv[2]) * 1000;
@@ -35,20 +53,3 @@ int	parse_input(t_data *data, char **argv)
 	return (0);
 }
 
-int	convert_string_to_integer(char *str)
-{
-	int	iter;
-	int	result;
-
-	iter = 0;
-	result = 0;
-	while (str[iter] && ((str[iter] >= 9 && str[iter] <= 13)
-			|| str[iter] == 32))
-		iter++;
-	while (str[iter] >= '0' && str[iter] <= '9' && str[iter] != '\0')
-	{
-		result = result * 10 + str[iter] - '0';
-		iter++;
-	}
-	return (result);
-}

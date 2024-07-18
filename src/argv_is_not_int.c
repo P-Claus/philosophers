@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_if_string_is_int.c                           :+:      :+:    :+:   */
+/*   argv_is_not_int.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 21:29:42 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/19 18:09:57 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/07/16 20:53:44 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,18 @@ long	ft_atoi_long(const char *str)
 {
 	long	result;
 	int		iter;
-	int		sign;
 
 	iter = 0;
-	sign = 1;
 	result = 0;
 	while (str[iter] && ((str[iter] >= 9 && str[iter] <= 13)
 			|| str[iter] == 32))
 		iter++;
-	if (str[iter] == '+' || str[iter] == '-')
-	{
-		if (str[iter] == '-')
-			sign = -1;
-		iter++;
-	}
 	while (str[iter] >= '0' && str[iter] <= '9' && str[iter] != '\0')
 	{
 		result = result * 10 + str[iter] - '0';
 		iter++;
 	}
-	return (result * sign);
+	return (result);
 }
 
 static int	calculate_strlen(char *str)
@@ -48,7 +40,7 @@ static int	calculate_strlen(char *str)
 	return (len);
 }
 
-int	check_if_string_is_int(char **argv)
+int	argv_is_not_int(char **argv)
 {
 	int		iter;
 	long	nb;
