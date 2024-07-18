@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 15:16:07 by pclaus            #+#    #+#             */
-/*   Updated: 2024/07/18 09:20:00 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/07/18 12:29:18 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	write_status(t_philosopher_status status, t_philosopher *philosopher)
 	elapsed = get_time(MILLISECOND) - philosopher->data->start_simulation;
 	if (philosopher->is_full)
 		return ;
-	pthread_mutex_lock(&philosopher->data->write_mutex);
+	pthread_mutex_lock(&philosopher->data->data_mutex);
 	if ((status == TAKE_FIRST_FORK || status == TAKE_SECOND_FORK)
 		&& !philosopher->data->end_simulation)
 		printf(GREEN "%-6ld %d has taken a fork\n" RESET, elapsed,
@@ -33,5 +33,5 @@ void	write_status(t_philosopher_status status, t_philosopher *philosopher)
 			philosopher->id);
 	else if (status == DIED)
 		printf(RED "%-6ld %d died\n" RESET, elapsed, philosopher->id);
-	pthread_mutex_unlock(&philosopher->data->write_mutex);
+	pthread_mutex_unlock(&philosopher->data->data_mutex);
 }
