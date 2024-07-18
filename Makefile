@@ -2,7 +2,7 @@
 ###		 CONFIG		          ###
 #############################################
 
-NAME			= philosopers
+NAME			= philosophers
 
 CC				= cc
 RM				= rm -rf
@@ -61,7 +61,7 @@ $(OBJ_DIR)/%.o: $(SOURCES_DIR)/%.c
 $(OBJ_DIR)/%.o: $(UTILS_DIR)/%.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@$(eval COMPILE_COUNT=$(shell echo $$(($(COMPILE_COUNT)+1))))
-	@echo -n "$(RESET)$(YELLOW)Compiling philosopers $$(($(COMPILE_COUNT)*100/$(TOTAL_FILES)))%"
+	@echo -n "$(RESET)$(YELLOW)Compiling philosophers $$(($(COMPILE_COUNT)*100/$(TOTAL_FILES)))%"
 
 $(OBJ_DIR)/%.o: $(ERROR_DIR)/%.c
 	@$(CC) $(CFLAGS) -c $< -o $@
@@ -76,7 +76,7 @@ fclean:
 	@make clean -s
 	@$(RM) $(OBJ_DIR)
 	@$(RM) $(NAME)
-	@echo "$(GREEN)Removed $(NAME) and the object files$(RESET_COLOR)"
+	@echo "$(GREEN)Removed $(NAME)$(RESET_COLOR)"
 
 re:
 	@make -s fclean
