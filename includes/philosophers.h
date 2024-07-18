@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:59:36 by pclaus            #+#    #+#             */
-/*   Updated: 2024/07/18 09:21:20 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/07/18 12:57:39 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ typedef struct s_data
 	long				nb_of_threads_running;
 	pthread_t			monitor;
 	pthread_mutex_t		data_mutex;
-	pthread_mutex_t		write_mutex;
 	t_fork				*forks;
 	t_philosopher		*philosophers;
 }						t_data;

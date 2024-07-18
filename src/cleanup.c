@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 15:07:07 by pclaus            #+#    #+#             */
-/*   Updated: 2024/07/18 09:13:36 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/07/18 13:25:41 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	cleanup(t_data *data)
 		pthread_mutex_destroy(&philosopher->philosopher_mutex);
 		iter++;
 	}
-	pthread_mutex_destroy(&data->write_mutex);
 	pthread_mutex_destroy(&data->data_mutex);
 	free(data->forks);
 	free(data->philosophers);
