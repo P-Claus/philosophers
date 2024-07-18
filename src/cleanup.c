@@ -6,11 +6,12 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 15:07:07 by pclaus            #+#    #+#             */
-/*   Updated: 2024/07/18 13:25:41 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/07/18 15:48:57 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
+#include <pthread.h>
 
 void	cleanup(t_data *data)
 {
@@ -22,6 +23,7 @@ void	cleanup(t_data *data)
 	{
 		philosopher = data->philosophers + iter;
 		pthread_mutex_destroy(&philosopher->philosopher_mutex);
+		pthread_mutex_destroy(&data->forks[iter].fork);
 		iter++;
 	}
 	pthread_mutex_destroy(&data->data_mutex);

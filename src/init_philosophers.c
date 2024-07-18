@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 18:31:30 by pclaus            #+#    #+#             */
-/*   Updated: 2024/07/18 09:16:03 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/07/18 15:28:18 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	assign_forks(t_philosopher *philosopher, t_fork *forks,
 	}
 }
 
-void	init_philosophers(t_data *data)
+int	init_philosophers(t_data *data)
 {
 	int				iter;
 	t_philosopher	*philosopher;
@@ -41,7 +41,14 @@ void	init_philosophers(t_data *data)
 		philosopher->is_full = false;
 		philosopher->nb_of_meals = 0;
 		philosopher->data = data;
-		pthread_mutex_init(&philosopher->philosopher_mutex, NULL);
+		if (pthread_mutex_init(&philosopher->philosopher_mutex, NULL))
+		{
+			print_error("this is a mutex error\n");
+			free(data->forks);
+			free(data->philosophers);
+			return (1);
+		}
 		assign_forks(philosopher, data->forks, iter);
 	}
+	return (0);
 }

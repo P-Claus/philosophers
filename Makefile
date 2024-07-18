@@ -2,7 +2,7 @@
 ###		 CONFIG		          ###
 #############################################
 
-NAME			= philosophers
+NAME			= philo
 
 CC				= cc
 RM				= rm -rf
@@ -56,17 +56,17 @@ $(OBJ_DIR)/%.o: $(SOURCES_DIR)/%.c
 	@$(MKDIR) $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@$(eval COMPILE_COUNT=$(shell echo $$(($(COMPILE_COUNT)+1))))
-	@echo -n "$(RESET)$(YELLOW)Compiling philosophers $$(($(COMPILE_COUNT)*100/$(TOTAL_FILES)))%"
+	@echo -n "$(RESET)$(YELLOW)Compiling philo $$(($(COMPILE_COUNT)*100/$(TOTAL_FILES)))%"
 
 $(OBJ_DIR)/%.o: $(UTILS_DIR)/%.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@$(eval COMPILE_COUNT=$(shell echo $$(($(COMPILE_COUNT)+1))))
-	@echo -n "$(RESET)$(YELLOW)Compiling philosophers $$(($(COMPILE_COUNT)*100/$(TOTAL_FILES)))%"
+	@echo -n "$(RESET)$(YELLOW)Compiling philo $$(($(COMPILE_COUNT)*100/$(TOTAL_FILES)))%"
 
 $(OBJ_DIR)/%.o: $(ERROR_DIR)/%.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@$(eval COMPILE_COUNT=$(shell echo $$(($(COMPILE_COUNT)+1))))
-	@echo -n "$(RESET)$(YELLOW)Compiling philosophers $$(($(COMPILE_COUNT)*100/$(TOTAL_FILES)))%"
+	@echo -n "$(RESET)$(YELLOW)Compiling philo $$(($(COMPILE_COUNT)*100/$(TOTAL_FILES)))%"
 
 clean:
 	@$(RM) $(OBJ_DIR)

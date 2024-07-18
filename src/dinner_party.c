@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 19:36:32 by pclaus            #+#    #+#             */
-/*   Updated: 2024/07/18 09:14:04 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/07/18 15:38:56 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	*handle_one_philosopher(void *data)
 		&philosopher->time_of_last_meal, get_time(MILLISECOND));
 	increase_amount_of_threads(&philosopher->data->data_mutex,
 		&philosopher->data->nb_of_threads_running);
+	write_status(TAKE_FIRST_FORK, philosopher);
 	while (!simulation_finished(philosopher->data))
 		usleep(200);
 	return (NULL);
