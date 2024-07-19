@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 15:06:58 by pclaus            #+#    #+#             */
-/*   Updated: 2024/07/18 15:03:29 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/07/19 15:08:52 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char **argv)
 	{
 		if (parse_input(&data, argv) == 1)
 			return (1);
-		if (init_data(&data))
+		if (init_data(&data, -1))
 			return (1);
 		start_dinner(&data);
 		cleanup(&data);
